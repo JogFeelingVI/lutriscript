@@ -1,0 +1,30 @@
+# https://res.ldmnq.com/download/4.0.64/ldinst64_4.0.64.exe
+name: LDPlayer4
+game_slug: LDPlayer4
+version: Installer
+slug: LDPlayer4-installer
+runner: wine
+
+script:
+  game:
+    exe: $GAMEDIR/mygame
+    args: --some-args
+    prefix: $GAMEDIR/prefix
+    arch: win64
+    working_dir: $GAMEDIR/prefix
+  files:
+  - installer: "N/A:Select the game's setup file"
+  installer:
+  - task:
+      executable: installer
+      name: wineexec
+      prefix: $GAMEDIR/prefix
+  wine:
+    Desktop: false
+    overrides:
+      ddraw.dll: n
+  system:
+    terminal: true
+    env:
+      WINEDLLOVERRIDES: d3d11=
+      SOMEENV: true
