@@ -24,3 +24,8 @@ find ~/.local -name 'LD*.desktop' 2>/dev/null -exec rm {} \;
 3. poetry init
 4. poetry add meson & mako
 5. install GOverlay
+
+#### Tips
+```
+As I mentioned earlier, that option isn’t actually “switching on discrete GPU”, but “switching from default GPU to secondary”. So in the cases where Intel is the secondary one it’s the one being turned on.
+```
