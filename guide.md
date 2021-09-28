@@ -14,7 +14,7 @@
 *  Example scripts
 ```
 
-#### *. Basics
+#### <u>Basics</u>
 
 Games in Lutris are written in the YAML format in a declarative way. The same document provides information on how to aquire game files, setup the game and store a base configuration.
 > Lutris中的游戏是以YAML格式以声明的方式编写的。同一份文件提供了关于如何获取游戏文件、设置游戏和存储基本配置的信息。
@@ -35,8 +35,7 @@ Important note: Installer scripts downloaded to the client are embedded in anoth
 
 ```
 name: 游戏的名称，如果包含特殊字符，应该用引号包围。
-game_slug: lutris网站上的游戏标识符
-版本。安装程序的名称
+game_slug: lutris网站上的游戏标识符版本。安装程序的名称
 slug: 安装程序的标识符
 runner: 用于游戏的运行器。
 ```
@@ -44,7 +43,7 @@ If you intend to write installers locally and not use the website, you should ha
 > 如果你打算在本地编写安装程序，而不使用网站，你应该在根层提供这些键，其他的都缩进到脚本部分。本地安装程序可以在 CLI 中用 `lutris -i /path/to/file.yaml` 启动。
 变量替换
 
-#### *. Variable substitution
+#### <u>Variable substitution</u>
 
 You can use variables in your script to customize some aspect of it. Those variables get substituted for their actual value during the install process.
 
@@ -52,16 +51,16 @@ Available variables are:
 
 ```
 可用的变量有。
-`$GAMEDIR`：安装游戏的绝对路径。
-`$CACHE`: 用于操作游戏文件的临时缓存，在安装结束后删除。
-`$RESOLUTION`: 用户主显示器的全部分辨率（例如：1920x1080）。
-`$RESOLUTION_WIDTH`: 用户主显示器的分辨率宽度（例如：1920）。
-`$resolution_height`: 用户主显示器的分辨率高度(例如：1080)
+$GAMEDIR：安装游戏的绝对路径。
+$CACHE: 用于操作游戏文件的临时缓存，在安装结束后删除。
+$RESOLUTION: 用户主显示器的全部分辨率（例如：1920x1080）。
+$RESOLUTION_WIDTH: 用户主显示器的分辨率宽度（例如：1920）。
+$resolution_height: 用户主显示器的分辨率高度(例如：1080)
 ```
 
 You can also reference files from the files section by their identifier, they will resolve to the absolute path of the downloaded or user provided file. Referencing game files usually doesn't require preceding the variable name with a dollar sign.
 
-#### *. Installer meta data
+#### <u>Installer meta data</u>
 
 > 你也可以通过标识符引用文件部分的文件，它们将解析为下载或用户提供的文件的绝对路径。引用游戏文件通常不需要在变量名前加上美元符号。
 安装程序元数据
@@ -100,7 +99,7 @@ Customizing the end of install text
 You can display a custom message when the installation is completed. To do so, use the install_complete_text key.
 > 你可以在安装完成后显示一个自定义的信息。要做到这一点，请使用 install_complete_text 键。
 
-#### *. Game configuration directives
+#### <u>Game configuration directives</u>
 
 A game configuration file can contain up to 3 sections: game, system and a section named after the runner used for the game.
 
@@ -144,7 +143,7 @@ ScummVM
 
 path: Location of the game files. This should be set to $GAMEDIR in installer scripts.
 
-#### *. Runner configuration directives
+#### <u>Runner configuration directives</u>
 
 Runners can be customized in a section named after the runner identifier (slug field in the API). A complete list of all runners is available at https://lutris.net/api/runners. Use the runner's slug as the runner identifier. Please keep the amount of runner customization to a minimum, only adding what is needed to make the game run correctly. A lot of runner options do not have their place in Lutris installers and are reserved for the user's preferences.
 
@@ -180,7 +179,7 @@ overrides:
   d3d9: disabled
   winegstreamer: builtin
 
-#### *. System configuration directives
+#### <u>System configuration directives</u>
 
 Those directives are stored in the system section and allow for customization of system features. As with runner configuration options, system directives should be used carefully, only adding them when absolutely necessary to run a game.
 
@@ -208,7 +207,7 @@ xephyr: Run the game in Xephyr. This is useful for games only handling 256 color
 
 xephyr_resolution: Used with the xephyr option, this sets the size of the Xephyr window. (xephyr_resolution: 1024x768)
 
-#### *. Fetching required files
+#### <u>Fetching required files</u>
 
 The files section of the installer references every file needed for installing the game. This section's keys are unique identifier used later in the installer section. The value can either be a string containing a URI pointing at the required file or a dictionary containing the filename and url keys. The url key is equivalent to passing only a string to the installer and the filename key will be used to give the local copy another name. If you need to set referer use referer key.
 
@@ -226,7 +225,7 @@ files:
 
 If the game makes use of (Windows) Steam data, the value should be $WINESTEAM:appid:path/to/data. This will check that the data is available or install it otherwise.
 
-#### *. Writing the installation script
+#### <u>Writing the installation script</u>
 
 After every file needed by the game has been aquired, the actual installation can take place. A series of directives will tell the installer how to set up the game correctly. Start the installer section with installer: then stack the directives by order of execution (top to bottom).
 Displaying an 'Insert disc' dialog
@@ -478,7 +477,7 @@ Example:
 
 In this example, English would be preselected. If the option eventually selected is French, the "$INPUT_LANG" alias would be available in following directives and would correspond to "fr". "$INPUT" would work as well, up until the next input directive.
 
-#### *. Example scripts
+#### <u>Example scripts</u>
 
 Those example scripts are intended to be used as standalone files. Only the script section should be added to the script submission form.
 
