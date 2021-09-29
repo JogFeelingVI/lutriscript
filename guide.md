@@ -1,7 +1,7 @@
 
 ## Installer documentation
 
-#### *. Table of contents
+####  Table of contents
 ```
 *  Basics
 *  Variable substitution
@@ -14,7 +14,7 @@
 *  Example scripts
 ```
 
-#### <u>Basics</u>
+#### Basics
 
 Games in Lutris are written in the YAML format in a declarative way. The same document provides information on how to aquire game files, setup the game and store a base configuration.
 > Lutris中的游戏是以YAML格式以声明的方式编写的。同一份文件提供了关于如何获取游戏文件、设置游戏和存储基本配置的信息。
@@ -43,7 +43,7 @@ If you intend to write installers locally and not use the website, you should ha
 > 如果你打算在本地编写安装程序，而不使用网站，你应该在根层提供这些键，其他的都缩进到脚本部分。本地安装程序可以在 CLI 中用 `lutris -i /path/to/file.yaml` 启动。
 变量替换
 
-#### <u>Variable substitution</u>
+#### Variable substitution
 
 You can use variables in your script to customize some aspect of it. Those variables get substituted for their actual value during the install process.
 
@@ -60,7 +60,7 @@ $resolution_height: 用户主显示器的分辨率高度(例如：1080)
 
 You can also reference files from the files section by their identifier, they will resolve to the absolute path of the downloaded or user provided file. Referencing game files usually doesn't require preceding the variable name with a dollar sign.
 
-#### <u>Installer meta data</u>
+#### Installer meta data
 
 > 你也可以通过标识符引用文件部分的文件，它们将解析为下载或用户提供的文件的绝对路径。引用游戏文件通常不需要在变量名前加上美元符号。
 安装程序元数据
@@ -99,11 +99,12 @@ Customizing the end of install text
 You can display a custom message when the installation is completed. To do so, use the install_complete_text key.
 > 你可以在安装完成后显示一个自定义的信息。要做到这一点，请使用 install_complete_text 键。
 
-#### <u>Game configuration directives</u>
+#### Game configuration directives
 
 A game configuration file can contain up to 3 sections: game, system and a section named after the runner used for the game.
 
 The game section can also contain references to other stores such as Steam or GOG. Some IDs are used to launch the game (Steam, ScummVM) while in other cases, the ID is only used to find games files on a 3rd party platform and download the installer (Humble Bundle, GOG).
+> 游戏部分也可以包含对其他商店的引用，如Steam或GOG。有些ID用于启动游戏（Steam、ScummVM），而在其他情况下，ID只用于在第三方平台上寻找游戏文件和下载安装程序（Humble Bundle、GOG）。
 
 Lutris supports the following game identifiers:
 
@@ -117,33 +118,46 @@ humbleid: Humble Bundle ID. There currently isn't a way to lookup game IDs other
 
 main_file: For MAME games, the main_file can refer to a MAME ID instead of a file path.
 Common game section entries
+> main_file。对于MAME游戏，main_file可以指一个MAME ID而不是文件路径。
+常见的游戏部分条目
 
 exe: Main game executable. Used for Linux and Wine games. Example: exe: exult
+> exe。主要的游戏可执行文件。用于Linux和Wine游戏。例如：Exe: exult
 
 main_file: Used in most emulator runners to reference the ROM or disk file. Example: main_file: game.rom. Can also be used to pass the URL for web based games: main_file: http://www...
+> main_file。在大多数仿真器运行程序中用来引用ROM或磁盘文件。例如：main_file: game.rom。也可以用来传递基于网络的游戏的URL：main_file: http://www...
 
 args: Pass additional arguments to the command. Can be used with linux, wine, winesteam, dosbox, scummvm, pico8 and zdoom runners. Example: args: -c $GAMEDIR/exult.cfg
+> args。向命令传递额外的参数。可用于linux、wine、winesteam、dosbox、scummvm、pico8和zdoom运行器。例如：args: -c $GAMEDIR/exult.cfg
 
 working_dir: Set the working directory for the game executable. This is useful if the game needs to run from a different directory than the one the executable resides in. This directive can be used for Linux, Wine and Dosbox installers. Example: $GAMEDIR/path/to/game
 Wine and other wine based runners like winesteam
+> working_dir: 设置游戏可执行文件的工作目录。如果游戏需要从与可执行文件所在的目录不同的目录中运行，这一点很有用。这个指令可以用于Linux、Wine和Dosbox安装程序。例如：$GAMEDIR/path/to/game
+wine和其他基于wine的运行器，如winesteam
 
 arch: Sets the architecture of a Wine prefix. By default it is set to win64, the value can be set to win32 to setup the game in a 32-bit prefix.
+> arch: 设置Wine前缀的架构。默认情况下，它被设置为win64，该值可以被设置为win32以在32位前缀中设置游戏。
 
 prefix: Path to the Wine prefix. For Wine games, it should be set to $GAMEDIR. For WineSteam games, set it to $GAMEDIR/prefix to isolate the prefix files from the the game files. This is only needed if the Steam game needs customization. If not provided, Lutris will use Winesteam's default prefix where Steam for Windows is installed.
-DRM free Steam and WineSteam
+> prefix。到Wine前缀的路径。对于Wine游戏，它应该被设置为$GAMEDIR。对于WineSteam游戏，将其设置为$GAMEDIR/prefix，以便将前缀文件与游戏文件隔离。只有在Steam游戏需要定制的时候才需要这样做。如果不提供，Lutris将使用Winesteam的默认前缀，其中Steam for Windows已经安装。
+
+无DRM的Steam和WineSteam
 
 Lutris has the ability to run Steam games without launching the Steam client. This is only possible with certain games lacking the Steam DRM.
 
 run_without_steam: Activate the DRM free mode and no not launch Steam when the game runs.
 
 steamless_binary: Used in conjonction with run_without_steam. This allows to provide the path of the game executable if it's able to run without the Steam client. The game must not have the Steam DRM to use this feature.
-
+> Lutris有能力在不启动Steam客户端的情况下运行Steam游戏。这只适用于某些缺乏Steam DRM的游戏。
+run_without_steam: 激活无DRM模式，在游戏运行时不启动Steam。
+无steam_binary。与run_without_steam结合使用。这允许提供游戏可执行文件的路径，如果它能够在没有Steam客户端的情况下运行。游戏必须没有Steam的DRM才能使用这个功能。
 Example: steamless_binary: $GAMEDIR/System/GMDX.exe
+
 ScummVM
 
 path: Location of the game files. This should be set to $GAMEDIR in installer scripts.
 
-#### <u>Runner configuration directives</u>
+#### Runner configuration directives
 
 Runners can be customized in a section named after the runner identifier (slug field in the API). A complete list of all runners is available at https://lutris.net/api/runners. Use the runner's slug as the runner identifier. Please keep the amount of runner customization to a minimum, only adding what is needed to make the game run correctly. A lot of runner options do not have their place in Lutris installers and are reserved for the user's preferences.
 
@@ -179,7 +193,7 @@ overrides:
   d3d9: disabled
   winegstreamer: builtin
 
-#### <u>System configuration directives</u>
+#### System configuration directives
 
 Those directives are stored in the system section and allow for customization of system features. As with runner configuration options, system directives should be used carefully, only adding them when absolutely necessary to run a game.
 
@@ -207,7 +221,7 @@ xephyr: Run the game in Xephyr. This is useful for games only handling 256 color
 
 xephyr_resolution: Used with the xephyr option, this sets the size of the Xephyr window. (xephyr_resolution: 1024x768)
 
-#### <u>Fetching required files</u>
+#### Fetching required files
 
 The files section of the installer references every file needed for installing the game. This section's keys are unique identifier used later in the installer section. The value can either be a string containing a URI pointing at the required file or a dictionary containing the filename and url keys. The url key is equivalent to passing only a string to the installer and the filename key will be used to give the local copy another name. If you need to set referer use referer key.
 
@@ -225,7 +239,7 @@ files:
 
 If the game makes use of (Windows) Steam data, the value should be $WINESTEAM:appid:path/to/data. This will check that the data is available or install it otherwise.
 
-#### <u>Writing the installation script</u>
+#### Writing the installation script
 
 After every file needed by the game has been aquired, the actual installation can take place. A series of directives will tell the installer how to set up the game correctly. Start the installer section with installer: then stack the directives by order of execution (top to bottom).
 Displaying an 'Insert disc' dialog
@@ -477,7 +491,7 @@ Example:
 
 In this example, English would be preselected. If the option eventually selected is French, the "$INPUT_LANG" alias would be available in following directives and would correspond to "fr". "$INPUT" would work as well, up until the next input directive.
 
-#### <u>Example scripts</u>
+#### Example scripts
 
 Those example scripts are intended to be used as standalone files. Only the script section should be added to the script submission form.
 
