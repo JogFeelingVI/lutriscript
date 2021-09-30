@@ -7,11 +7,10 @@ runner: wine
 
 script:
   game:
-    exe: $GAMEDIR/mygame
+    exe: $GAMEDIR/LDPlayer4
     args: --some-args
     prefix: $GAMEDIR/prefix
     arch: win64
-    working_dir: $GAMEDIR/prefix
   files:
   - installer: "N/A:Select the game's setup file"
   installer:
@@ -24,7 +23,7 @@ script:
     overrides:
       ddraw.dll: n
   system:
-    terminal: true
+    terminal: false
     env:
       WINEDLLOVERRIDES: d3d11=
       SOMEENV: true
