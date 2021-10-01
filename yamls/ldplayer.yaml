@@ -21,9 +21,4 @@ script:
   wine:
     Desktop: false
     overrides:
-      ddraw.dll: n
-  system:
-    terminal: false
-    env:
-      WINEDLLOVERRIDES: d3d11=
-      SOMEENV: true
+      ddraw.dll: b
